@@ -24,7 +24,9 @@ public class Kontroler {
     public List<Pracownik> pracownicy(){
         return repozytorium.findAll();
     }
-    @DeleteMapping("/pracownik/{id_pracownika}")
+
+
+    @DeleteMapping("/pracownikDel/{id_pracownika}")
     public String usunPoId(@PathVariable("id_pracownika") int id_pracownika) {
         repozytorium.deleteById(id_pracownika);
         return "Rekord usunięty";
@@ -37,10 +39,21 @@ public class Kontroler {
         String dataZatrudnieniaStr = body.get("data_zatrudnienia");
         Integer id_stanowiska = Integer.parseInt(body.get("id_stanowiska"));
 
-        LocalDate dataZatrudnienia = LocalDate.parse(dataZatrudnieniaStr);
+        LocalDate data_zatrudnienia = LocalDate.parse(dataZatrudnieniaStr);
 
 
-        return repozytorium.save(new Pracownik(imie, nazwisko, dataZatrudnienia,id_stanowiska));
+        return repozytorium.save(new Pracownik(imie, nazwisko, data_zatrudnienia,id_stanowiska));
+    }
+
+    @PutMapping("/pracownikEdit/{id_pracownika}")
+    public Pracownik zmienPracownika(@RequestBody Map<String, String> body){
+        String imie = body.get("imie");
+        String nazwisko = body.get("nazwisko");
+        String data_zatrudnieniaStr = body.get("data_zatrudnienia");
+        Integer id_stanowiska = Integer.parseInt(body.get("id_stanowiska"));
+
+        LocalDate data_zatrudnienia = LocalDate.parse(data_zatrudnieniaStr);
+        return repozytorium.save(new Pracownik(imie, nazwisko, data_zatrudnienia,id_stanowiska));
     }
 
     @GetMapping("/dodajTestowe")
@@ -51,9 +64,9 @@ public class Kontroler {
         LocalDate dataZatrudnienia3 = LocalDate.of(2018, 4, 22);
 
         repozytorium.saveAll(List.of(
-                new Pracownik("Adam","Kowalski",dataZatrudnienia1,01),
-                new Pracownik("Eliza","Nowak",dataZatrudnienia2,02),
-                new Pracownik("Bartosz","Kot",dataZatrudnienia3,01)
+                new Pracownik("Adam","Kowalski",dataZatrudnienia1,1),
+                new Pracownik("Eliza","Nowak",dataZatrudnienia2,2),
+                new Pracownik("Bartosz","Kot",dataZatrudnienia3,1)
         ));
 
         return "Testowe rekordy dodane!";

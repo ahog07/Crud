@@ -22,50 +22,50 @@ public class Pracownik implements Serializable {
     private String nazwisko;
 
     @Column(name="data_zatrudnienia")
-    private LocalDate dataZatrudnienia;
+    private LocalDate data_zatrudnienia;
 
     @Column(name="id_stanowiska")
     private Integer id_stanowiska;
 
     public Pracownik(){}
-    public Pracownik(String imie, String nazwisko, LocalDate dataZatrudnienia, Integer id_stanowiska){
+    public Pracownik(String imie, String nazwisko, LocalDate data_zatrudnienia, Integer id_stanowiska){
         this.imie = imie;
         this.nazwisko = nazwisko;
-        this.dataZatrudnienia = dataZatrudnienia;
+        this.data_zatrudnienia = data_zatrudnienia;
         this.id_stanowiska = id_stanowiska;
 
     }
 
-    public Integer getId() {
+    public Integer getId_pracownika() {
         return id_pracownika;
     }
 
-    public void setId(Integer id) {
-        this.id_pracownika = id;
+    public void setId_pracownika(Integer id_pracownika) {
+        this.id_pracownika = id_pracownika;
     }
 
-    public String getFirstname() {
+    public String getImie() {
         return imie;
     }
 
-    public void setFirstname(String firstname) {
-        this.imie = firstname;
+    public void setImie(String imie) {
+        this.imie = imie;
     }
 
-    public String getLastname() {
+    public String getNazwisko() {
         return nazwisko;
     }
 
-    public void setLastname(String lastname) {
-        this.nazwisko = lastname;
+    public void setNazwisko(String nazwisko) {
+        this.nazwisko = nazwisko;
     }
 
-    public LocalDate getDataZatrudnienia() {
-        return dataZatrudnienia;
+    public LocalDate getData_zatrudnienia() {
+        return data_zatrudnienia;
     }
 
-    public void setDataZatrudnienia(LocalDate dataZatrudnienia) {
-        this.dataZatrudnienia = dataZatrudnienia;
+    public void setData_zatrudnienia(LocalDate data_zatrudnienia) {
+        this.data_zatrudnienia = data_zatrudnienia;
     }
 
     public Integer getId_stanowiska() {
