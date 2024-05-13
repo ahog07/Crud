@@ -76,3 +76,5 @@ public class Pracownik implements Serializable {
         this.id_stanowiska = id_stanowiska;
     }
 }
+
+// cos zbytecznego //
