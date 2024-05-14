@@ -1,8 +1,15 @@
 package aplikacja.crud.kontroler;
 
 import aplikacja.crud.repozytorium.Repozytorium;
-
 import aplikacja.crud.pracownik.Pracownik;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 public class Kontroler {
 
     private final Repozytorium repozytorium;
@@ -26,6 +33,19 @@ public class Kontroler {
     }
 
 
+
+    @GetMapping("/")
+    public String showPracownikList(Model model){
+        List<Pracownik> pracownikList = repozytorium.findAll();
+        model.addAttribute("pracownikList", pracownikList);
+
+        return "pracownikList";
+
+    }
+
+
+
+
     @DeleteMapping("/pracownikDel/{id_pracownika}")
     public String usunPoId(@PathVariable("id_pracownika") int id_pracownika) {
         repozytorium.deleteById(id_pracownika);
@@ -36,10 +56,10 @@ public class Kontroler {
     public Pracownik utworzPracownika(@RequestBody Map<String, String> body) {
         String imie = body.get("imie");
         String nazwisko = body.get("nazwisko");
-        String dataZatrudnieniaStr = body.get("data_zatrudnienia");
+        String data_zatrudnieniaStr = body.get("data_zatrudnienia");
         Integer id_stanowiska = Integer.parseInt(body.get("id_stanowiska"));
 
-        LocalDate data_zatrudnienia = LocalDate.parse(dataZatrudnieniaStr);
+        LocalDate data_zatrudnienia = LocalDate.parse(data_zatrudnieniaStr);
 
 
         return repozytorium.save(new Pracownik(imie, nazwisko, data_zatrudnienia,id_stanowiska));
@@ -55,6 +75,7 @@ public class Kontroler {
         LocalDate data_zatrudnienia = LocalDate.parse(data_zatrudnieniaStr);
         return repozytorium.save(new Pracownik(imie, nazwisko, data_zatrudnienia,id_stanowiska));
     }
+
 
     @GetMapping("/dodajTestowe")
     public String DaneTestowe() {
