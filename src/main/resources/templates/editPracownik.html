@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Pracownik</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Edit Pracownik</h2>
+
+    <form th:object="${pracownik}" th:action="@{/updatePracownik}" method="post">
+        <input type="hidden" th:field="*{id_pracownika}" />
+
+        <label for="id_pracownika">Id:</label>
+        <input type="text" id="id_pracownika" th:field="*{id_pracownika}" readonly />
+
+        <label for="imie">Imie:</label>
+        <input type="text" id="imie" th:field="*{imie}" required />
+        <br/>
+
+        <label for="nazwisko">Nazwisko:</label>
+        <input type="text" id="nazwisko" th:field="*{nazwisko}" required />
+        <br/>
+
+        <label for="data_zatrudnienia">Data Zatrudnienia:</label>
+        <input type="date" id="data_zatrudnienia" th:value="${#dates.format(pracownik.data_zatrudnienia, 'yyyy-MM-dd')}" required />
+        <br/>
+
+        <span th:text="${#temporals.format(pracownik.data_zatrudnienia, 'dd-MM-yyyy')}"></span>
+
+        <label for="id_stanowiska">Id Stanowiska:</label>
+        <input type="number" id="id_stanowiska" th:field="*{id_stanowiska}" required />
+        <br/>
+
+
+        <button type="submit" class="btn btn-primary">Save Pracownik</button>
+    </form>
+
+    <br/>
+    <br/>
+
+
+    <a th:href="@{/}">Back to Pracownik List</a>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+        integrity="sha384-XCEx+Z9pFWj2wblQHVnU14CNU8F5+KGJpHCF8eXolnDzU13egCffGPOeIJSq1TwD"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6uLbBl6S/BqE6JZnMxImV9ZG1WNRtE+ApA4d1"
+        crossorigin="anonymous"></script>
+
+
+</body>
+</html>

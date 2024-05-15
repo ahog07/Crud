@@ -29,10 +29,17 @@
             <td th:text="${pracownik.nazwisko}"></td>
             <td th:text="${#temporals.format(pracownik.data_zatrudnienia, 'dd-MM-yyyy')}"></td>
             <td th:text="${pracownik.id_stanowiska}"></td>
+            <td>
+<!--                <a th:href="@{'/editPracownik/' + ${pracownik.id_pracownika}}" class="btn btn-primary btn-sm">Edit</a>-->
+                <a th:href="@{'/delete/' + ${pracownik.id_pracownika}}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
 
         </tr>
         </tbody>
     </table>
+
+
+    <a th:href="@{/newPracownik}" class="btn btn-success">Create New Pracownik</a>
 
 </div>
 
@@ -46,4 +53,28 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6uLbBl6S/BqE6JZnMxImV9ZG1WNRtE+ApA4d1"
         crossorigin="anonymous"></script>
 </body>
+<!-- Formularz edycji -->
+<!--<div id="editForm" style="display: none;">-->
+<!--    <h3>Edytuj pracownika</h3>-->
+<!--    <form action="/editPracownik" method="post">-->
+<!--        <input type="hidden" id="editId" name="id_pracownika" value="">-->
+<!--        <div class="form-group">-->
+<!--            <label for="editImie">Imie:</label>-->
+<!--            <input type="text" class="form-control" id="editImie" name="imie" required>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="editNazwisko">Nazwisko:</label>-->
+<!--            <input type="text" class="form-control" id="editNazwisko" name="nazwisko" required>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="editData_zatrudnienia">Data Zatrudnienia:</label>-->
+<!--            <input type="date" class="form-control" id="editData_zatrudnienia" name="data_zatrudnienia" required>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="editId_stanowiska">Id Stanowiska:</label>-->
+<!--            <input type="number" class="form-control" id="editId_stanowiska" name="id_stanowiska" required>-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-primary">Zapisz</button>-->
+<!--    </form>-->
+<!--</div>-->
 </html>

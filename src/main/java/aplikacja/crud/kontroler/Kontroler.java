@@ -3,6 +3,7 @@ package aplikacja.crud.kontroler;
 import aplikacja.crud.repozytorium.Repozytorium;
 import aplikacja.crud.pracownik.Pracownik;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,38 +44,77 @@ public class Kontroler {
 
     }
 
+//    @DeleteMapping("/pracownikDel/{id_pracownika}")
+//    public String usunPoId(@PathVariable("id_pracownika") int id_pracownika) {
+//        repozytorium.deleteById(id_pracownika);
+//        return "Rekord usunięty";
+//    }
 
-
-
-    @DeleteMapping("/pracownikDel/{id_pracownika}")
-    public String usunPoId(@PathVariable("id_pracownika") int id_pracownika) {
-        repozytorium.deleteById(id_pracownika);
-        return "Rekord usunięty";
+    @GetMapping("/delete/{id}")
+    public String deletePracownik(@PathVariable Integer id) {
+        repozytorium.deleteById(id);
+        return "redirect:/";
     }
 
-    @PostMapping("/pracownikAdd")
-    public Pracownik utworzPracownika(@RequestBody Map<String, String> body) {
-        String imie = body.get("imie");
-        String nazwisko = body.get("nazwisko");
-        String data_zatrudnieniaStr = body.get("data_zatrudnienia");
-        Integer id_stanowiska = Integer.parseInt(body.get("id_stanowiska"));
-
-        LocalDate data_zatrudnienia = LocalDate.parse(data_zatrudnieniaStr);
 
 
-        return repozytorium.save(new Pracownik(imie, nazwisko, data_zatrudnienia,id_stanowiska));
+    @PostMapping("/updatePracownik")
+    public String updatePracownik(@ModelAttribute Pracownik pracownik) {
+        repozytorium.saveAndFlush(pracownik);
+        return "redirect:/";
     }
 
-    @PutMapping("/pracownikEdit/{id_pracownika}")
-    public Pracownik zmienPracownika(@RequestBody Map<String, String> body){
-        String imie = body.get("imie");
-        String nazwisko = body.get("nazwisko");
-        String data_zatrudnieniaStr = body.get("data_zatrudnienia");
-        Integer id_stanowiska = Integer.parseInt(body.get("id_stanowiska"));
+    @GetMapping("/editPracownik/{id}")
+    public String editPracownik(@PathVariable Integer id, Model model) {
+        Pracownik pracownik = repozytorium.getById(id);
+        model.addAttribute("pracownik", pracownik);
+        return "editPracownik";
 
-        LocalDate data_zatrudnienia = LocalDate.parse(data_zatrudnieniaStr);
-        return repozytorium.save(new Pracownik(imie, nazwisko, data_zatrudnienia,id_stanowiska));
     }
+//
+//    @PostMapping("/updatePracownik")
+//    public String updatePracownik(@ModelAttribute Pracownik pracownik) {
+//        repozytorium.saveAndFlush(pracownik);
+//        return "redirect:/";
+//    }
+
+    @GetMapping ("/newPracownik")
+    public String newPracownik(Model model) {
+        Pracownik pracownik = new Pracownik();
+        model.addAttribute("pracownik", pracownik);
+        return "newPracownik";
+    }
+
+    @PostMapping("/savePracownik")
+    public String savePracownik(@ModelAttribute Pracownik pracownik) {
+        repozytorium.saveAndFlush(pracownik);
+        return "redirect:/";
+    }
+
+
+//    @PostMapping("/pracownikAdd")
+//    public Pracownik utworzPracownika(@RequestBody Map<String, String> body) {
+//        String imie = body.get("imie");
+//        String nazwisko = body.get("nazwisko");
+//        String data_zatrudnieniaStr = body.get("data_zatrudnienia");
+//        Integer id_stanowiska = Integer.parseInt(body.get("id_stanowiska"));
+//
+//        LocalDate data_zatrudnienia = LocalDate.parse(data_zatrudnieniaStr);
+//
+//
+//        return repozytorium.save(new Pracownik(imie, nazwisko, data_zatrudnienia,id_stanowiska));
+//    }
+
+//    @PutMapping("/pracownikEdit/{id_pracownika}")
+//    public Pracownik zmienPracownika(@RequestBody Map<String, String> body){
+//        String imie = body.get("imie");
+//        String nazwisko = body.get("nazwisko");
+//        String data_zatrudnieniaStr = body.get("data_zatrudnienia");
+//        Integer id_stanowiska = Integer.parseInt(body.get("id_stanowiska"));
+//
+//        LocalDate data_zatrudnienia = LocalDate.parse(data_zatrudnieniaStr);
+//        return repozytorium.save(new Pracownik(imie, nazwisko, data_zatrudnienia,id_stanowiska));
+//    }
 
 
     @GetMapping("/dodajTestowe")
