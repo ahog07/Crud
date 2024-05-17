@@ -2,6 +2,8 @@ package aplikacja.crud.kontroler;
 
 import aplikacja.crud.repozytorium.Repozytorium;
 import aplikacja.crud.pracownik.Pracownik;
+import aplikacja.crud.pawilon.Pawilon;
+
 
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
@@ -28,35 +30,23 @@ public class Kontroler {
         this.repozytorium = repozytorium;
     }
 
-    @GetMapping("/pracownicy")
-    public List<Pracownik> pracownicy(){
-        return repozytorium.findAll();
-    }
-
-
+//    @GetMapping("/pracownicy")
+//    public List<Pracownik> pracownicy(){
+//        return repozytorium.findAll();
+//    }
 
     @GetMapping("/")
     public String showPracownikList(Model model){
         List<Pracownik> pracownikList = repozytorium.findAll();
         model.addAttribute("pracownikList", pracownikList);
-
         return "pracownikList";
-
     }
-
-//    @DeleteMapping("/pracownikDel/{id_pracownika}")
-//    public String usunPoId(@PathVariable("id_pracownika") int id_pracownika) {
-//        repozytorium.deleteById(id_pracownika);
-//        return "Rekord usunięty";
-//    }
 
     @GetMapping("/delete/{id}")
     public String deletePracownik(@PathVariable Integer id) {
         repozytorium.deleteById(id);
         return "redirect:/";
     }
-
-
 
     @PostMapping("/updatePracownik")
     public String updatePracownik(@ModelAttribute Pracownik pracownik) {
@@ -69,14 +59,7 @@ public class Kontroler {
         Pracownik pracownik = repozytorium.getById(id);
         model.addAttribute("pracownik", pracownik);
         return "editPracownik";
-
     }
-//
-//    @PostMapping("/updatePracownik")
-//    public String updatePracownik(@ModelAttribute Pracownik pracownik) {
-//        repozytorium.saveAndFlush(pracownik);
-//        return "redirect:/";
-//    }
 
     @GetMapping ("/newPracownik")
     public String newPracownik(Model model) {
@@ -92,19 +75,6 @@ public class Kontroler {
     }
 
 
-//    @PostMapping("/pracownikAdd")
-//    public Pracownik utworzPracownika(@RequestBody Map<String, String> body) {
-//        String imie = body.get("imie");
-//        String nazwisko = body.get("nazwisko");
-//        String data_zatrudnieniaStr = body.get("data_zatrudnienia");
-//        Integer id_stanowiska = Integer.parseInt(body.get("id_stanowiska"));
-//
-//        LocalDate data_zatrudnienia = LocalDate.parse(data_zatrudnieniaStr);
-//
-//
-//        return repozytorium.save(new Pracownik(imie, nazwisko, data_zatrudnienia,id_stanowiska));
-//    }
-
 //    @PutMapping("/pracownikEdit/{id_pracownika}")
 //    public Pracownik zmienPracownika(@RequestBody Map<String, String> body){
 //        String imie = body.get("imie");
@@ -116,8 +86,7 @@ public class Kontroler {
 //        return repozytorium.save(new Pracownik(imie, nazwisko, data_zatrudnienia,id_stanowiska));
 //    }
 
-
-    @GetMapping("/dodajTestowe")
+    @GetMapping("/dodajTestowePracownik")
     public String DaneTestowe() {
 
         LocalDate dataZatrudnienia1 = LocalDate.of(2019, 5, 12);
@@ -132,6 +101,6 @@ public class Kontroler {
 
         return "Testowe rekordy dodane!";
 
-
     }
+
 }
