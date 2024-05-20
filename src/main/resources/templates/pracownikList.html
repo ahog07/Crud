@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista pracowników</title>
+    <title>List of Employees</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <div class="container mt-4">
-    <h2>Lista pracowników</h2>
+    <h2>List of Employees</h2>
     <table class="table">
         <thead>
         <tr>
-            <th>Id Pracownika</th>
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Data Zatrudnienia</th>
-            <th>Id Stanowiska</th>
-            <th>Akcje</th>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Position ID</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -27,20 +26,16 @@
             <td th:text="${pracownik.id_pracownika}"></td>
             <td th:text="${pracownik.imie}"></td>
             <td th:text="${pracownik.nazwisko}"></td>
-            <td th:text="${#temporals.format(pracownik.data_zatrudnienia, 'dd-MM-yyyy')}"></td>
             <td th:text="${pracownik.id_stanowiska}"></td>
             <td>
-<!--                <a th:href="@{'/editPracownik/' + ${pracownik.id_pracownika}}" class="btn btn-primary btn-sm">Edit</a>-->
-                <a th:href="@{'/delete/' + ${pracownik.id_pracownika}}" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{'/pracownik/edit/' + ${pracownik.id_pracownika}}" class="btn btn-primary btn-sm">Edit</a>
+                <a th:href="@{'/pracownik/delete/' + ${pracownik.id_pracownika}}" class="btn btn-danger btn-sm">Delete</a>
             </td>
-
         </tr>
         </tbody>
     </table>
 
-
-    <a th:href="@{/newPracownik}" class="btn btn-success">Create New Pracownik</a>
-
+    <a th:href="@{/pracownik/new}" class="btn btn-success">Add New Employee</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -53,28 +48,4 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6uLbBl6S/BqE6JZnMxImV9ZG1WNRtE+ApA4d1"
         crossorigin="anonymous"></script>
 </body>
-<!-- Formularz edycji -->
-<!--<div id="editForm" style="display: none;">-->
-<!--    <h3>Edytuj pracownika</h3>-->
-<!--    <form action="/editPracownik" method="post">-->
-<!--        <input type="hidden" id="editId" name="id_pracownika" value="">-->
-<!--        <div class="form-group">-->
-<!--            <label for="editImie">Imie:</label>-->
-<!--            <input type="text" class="form-control" id="editImie" name="imie" required>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="editNazwisko">Nazwisko:</label>-->
-<!--            <input type="text" class="form-control" id="editNazwisko" name="nazwisko" required>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="editData_zatrudnienia">Data Zatrudnienia:</label>-->
-<!--            <input type="date" class="form-control" id="editData_zatrudnienia" name="data_zatrudnienia" required>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="editId_stanowiska">Id Stanowiska:</label>-->
-<!--            <input type="number" class="form-control" id="editId_stanowiska" name="id_stanowiska" required>-->
-<!--        </div>-->
-<!--        <button type="submit" class="btn btn-primary">Zapisz</button>-->
-<!--    </form>-->
-<!--</div>-->
 </html>

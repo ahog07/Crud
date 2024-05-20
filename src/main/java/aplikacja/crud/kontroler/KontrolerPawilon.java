@@ -24,7 +24,7 @@ public class KontrolerPawilon {
         this.repozytoriumPawilon = repozytoriumPawiolon;
     }
 
-    @GetMapping("/")
+    @GetMapping("/Pawilon")
     public String showPawilonList(Model model) {
         List<Pawilon> pawilonList = repozytoriumPawilon.findAll();
         model.addAttribute("pawilonList", pawilonList);
@@ -34,7 +34,7 @@ public class KontrolerPawilon {
     @GetMapping("/deletePawilon/{id}")
     public String deletePawilon(@PathVariable Integer id) {
         repozytoriumPawilon.deleteById(id);
-        return "redirect:/";
+        return "redirect:/Pawilon";
     }
 
     @GetMapping ("/newPawilon")
@@ -47,7 +47,28 @@ public class KontrolerPawilon {
     @PostMapping("/savePawilon")
     public String savePawilon(@ModelAttribute Pawilon pawilon) {
         repozytoriumPawilon.saveAndFlush(pawilon);
-        return "redirect:/";
+        return "redirect:/Pawilon";
+    }
+
+    @GetMapping("/editPawilon/{id_pawilonu}")
+    public String showEditPawilonForm(@PathVariable("id_pawilonu") Integer id_pawilonu, Model model) {
+        Pawilon pawilon = repozytoriumPawilon.findById(id_pawilonu)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid pawilon id: " + id_pawilonu));
+        model.addAttribute("pawilon", pawilon);
+        return "editPawilon";
+    }
+
+
+    @PostMapping("/updatePawilon/{id_pawilonu}")
+    public String updatePawilon(@PathVariable("id_pawilonu") Integer id_pawilonu, @ModelAttribute Pawilon pawilon, Model model) {
+        Pawilon existingPawilon = repozytoriumPawilon.findById(id_pawilonu)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid pawilon id: " + id_pawilonu));
+
+        existingPawilon.setNazwa(pawilon.getNazwa());
+
+
+        repozytoriumPawilon.save(existingPawilon);
+        return "redirect:/Pawilon";
     }
 
 

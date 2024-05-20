@@ -1,15 +1,12 @@
 package aplikacja.crud.pracownik;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="pracownik")
 public class Pracownik implements Serializable {
     private static final long serialVersionUID = -3009157732242241606L;
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,20 +18,12 @@ public class Pracownik implements Serializable {
     @Column(name="nazwisko")
     private String nazwisko;
 
-    @Column(name="data_zatrudnienia")
-    private LocalDate data_zatrudnienia;
-
     @Column(name="id_stanowiska")
     private Integer id_stanowiska;
 
-    public Pracownik(){}
-    public Pracownik(String imie, String nazwisko, LocalDate data_zatrudnienia, Integer id_stanowiska){
-        this.imie = imie;
-        this.nazwisko = nazwisko;
-        this.data_zatrudnienia = data_zatrudnienia;
-        this.id_stanowiska = id_stanowiska;
 
-    }
+    public Pracownik() {}
+
 
     public Integer getId_pracownika() {
         return id_pracownika;
@@ -60,14 +49,6 @@ public class Pracownik implements Serializable {
         this.nazwisko = nazwisko;
     }
 
-    public LocalDate getData_zatrudnienia() {
-        return data_zatrudnienia;
-    }
-
-    public void setData_zatrudnienia(LocalDate data_zatrudnienia) {
-        this.data_zatrudnienia = data_zatrudnienia;
-    }
-
     public Integer getId_stanowiska() {
         return id_stanowiska;
     }
@@ -76,5 +57,3 @@ public class Pracownik implements Serializable {
         this.id_stanowiska = id_stanowiska;
     }
 }
-
-// cos zbytecznego //
