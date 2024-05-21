@@ -1,8 +1,10 @@
 package aplikacja.crud.kontroler;
 
+import aplikacja.crud.pawilon.Pawilon;
 import aplikacja.crud.repozytorium.RepozytoriumPracownik;
 import aplikacja.crud.pracownik.Pracownik;
 
+import aplikacja.crud.stanowisko.Stanowisko;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,24 +32,24 @@ public class KontrolerPracownik {
         return "pracownikList";
     }
 
-    @GetMapping("/pracownik/{id}")
-    public String showPracownikDetails(@PathVariable Integer id, Model model) {
-        Pracownik pracownik = repozytoriumPracownik.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid pracownik ID: " + id));
-        model.addAttribute("pracownik", pracownik);
-        return "pracownikDetails";
-    }
+//    @GetMapping("/pracownik/{id}")
+//    public String showPracownikDetails(@PathVariable Integer id, Model model) {
+//        Pracownik pracownik = repozytoriumPracownik.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("Invalid pracownik ID: " + id));
+//        model.addAttribute("pracownik", pracownik);
+//        return "pracownik";
+//    }
 
     @GetMapping("/pracownik/new")
-    public String showNewPracownikForm(Model model) {
+    public String newPracownik(Model model) {
         Pracownik pracownik = new Pracownik();
         model.addAttribute("pracownik", pracownik);
         return "newPracownik";
     }
 
-    @PostMapping("/pracownik/save")
-    public String savePracownik(@ModelAttribute("pracownik") Pracownik pracownik) {
-        repozytoriumPracownik.save(pracownik);
+    @PostMapping("/savePracownik")
+    public String savePracownik(@ModelAttribute Pracownik pracownik) {
+        repozytoriumPracownik.saveAndFlush(pracownik);
         return "redirect:/pracownik";
     }
 
@@ -60,15 +62,35 @@ public class KontrolerPracownik {
     }
 
     @PostMapping("/pracownik/update/{id_pracownika}")
-    public String updatePracownik(@PathVariable Integer id_pracownika, @ModelAttribute("pracownik") Pracownik pracownik) {
+    public String updatePracownik(@PathVariable("id_pracownika") Integer id_pracownika, @ModelAttribute Pracownik pracownik, Model model) {
         pracownik.setId_pracownika(id_pracownika);
         repozytoriumPracownik.save(pracownik);
         return "redirect:/pracownik";
     }
 
-    @GetMapping("/pracownik/delete/{id_pracownika}")
-    public String deletePracownik(@PathVariable Integer id_pracownika) {
-        repozytoriumPracownik.deleteById(id_pracownika);
+//    @GetMapping("/editPracownik/{id_pracownika}")
+//    public String showEditPracownikForm(@PathVariable("id_pracownika") Integer id_pracownika, Model model) {
+//        Pracownik pracownik = repozytoriumPracownik.findById(id_pracownika)
+//                .orElseThrow(() -> new IllegalArgumentException("Invalid pracownik id: " + id_pracownika));
+//        model.addAttribute("pracownik", pracownik);
+//        return "editPracownik";
+//    }
+//
+//    @PostMapping("/updatePracownik/{id_pracownika}")
+//    public String updatePracownik(@PathVariable("id_pracownika") Integer id_pracownika, @ModelAttribute Pracownik pracownik, Model model) {
+//        Pracownik existingPracownik = repozytoriumPracownik.findById(id_pracownika)
+//                .orElseThrow(() -> new IllegalArgumentException("Invalid pracownik id: " + id_pracownika));
+//
+//        existingPracownik.setImie(pracownik.getImie());
+//
+//
+//        repozytoriumPracownik.save(existingPracownik);
+//        return "redirect:/Stanowisko";
+//    }
+
+    @GetMapping("/deletePracownik/{id}")
+    public String deletePracownik(@PathVariable Integer id) {
+        repozytoriumPracownik.deleteById(id);
         return "redirect:/pracownik";
     }
 }

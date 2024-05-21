@@ -14,8 +14,14 @@
     <h2>Edytuj Zwierze</h2>
     <form th:action="@{'/updateZwierze/' + ${zwierze.id_zwierzaka}}" th:object="${zwierze}" method="post">
         <div class="form-group">
-            <label for="id_gatunku">Id Gatunku:</label>
-            <input type="number" class="form-control" id="id_gatunku" th:field="*{id_gatunku}" required>
+            <label for="gatunek">Gatunek:</label>
+            <select class="form-control" id="gatunek" th:field="*{gatunek.id_gatunku}" required>
+                <option value="" disabled selected>Wybierz gatunek</option>
+                <option th:each="species : ${listOfSpecies}"
+                        th:value="${species.id_gatunku}"
+                        th:text="${species.id_gatunku + ' - ' + species.nazwa}">
+                </option>
+            </select>
         </div>
         <div class="form-group">
             <label for="imie">Imię:</label>

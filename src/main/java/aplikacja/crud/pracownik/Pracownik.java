@@ -1,7 +1,10 @@
 package aplikacja.crud.pracownik;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="pracownik")
@@ -12,6 +15,9 @@ public class Pracownik implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_pracownika;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
+
     @Column(name="imie")
     private String imie;
 
@@ -20,6 +26,9 @@ public class Pracownik implements Serializable {
 
     @Column(name="id_stanowiska")
     private Integer id_stanowiska;
+
+    @Column(name="data_zatrudnienia")
+    private Date data_zatrudnienia;
 
 
     public Pracownik() {}
@@ -49,11 +58,18 @@ public class Pracownik implements Serializable {
         this.nazwisko = nazwisko;
     }
 
-    public Integer getId_stanowiska() {
-        return id_stanowiska;
-    }
+    public Integer getId_stanowiska() {return id_stanowiska;}
 
     public void setId_stanowiska(Integer id_stanowiska) {
         this.id_stanowiska = id_stanowiska;
     }
+
+
+    public Date getData_zatrudnienia() {return data_zatrudnienia;}
+
+    public void setData_zatrudnienia(Date data_zatrudnienia) {
+        this.data_zatrudnienia = data_zatrudnienia;
+    }
+
+
 }

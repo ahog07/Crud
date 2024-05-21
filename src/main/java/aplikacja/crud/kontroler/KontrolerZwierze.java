@@ -2,7 +2,8 @@ package aplikacja.crud.kontroler;
 
 import aplikacja.crud.zwierze.Zwierze;
 import aplikacja.crud.repozytorium.RepozytoriumZwierze;
-
+import aplikacja.crud.gatunek.Gatunek;
+import aplikacja.crud.repozytorium.RepozytoriumGatunek;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +18,20 @@ import java.util.List;
 public class KontrolerZwierze {
 
     private final RepozytoriumZwierze repozytoriumZwierze;
+    private final RepozytoriumGatunek repozytoriumGatunek;
 
     @Autowired
-    public KontrolerZwierze(RepozytoriumZwierze repozytoriumZwierze) {
+    public KontrolerZwierze(RepozytoriumZwierze repozytoriumZwierze, RepozytoriumGatunek repozytoriumGatunek) {
         this.repozytoriumZwierze = repozytoriumZwierze;
+        this.repozytoriumGatunek = repozytoriumGatunek;
     }
+
+//    private final RepozytoriumZwierze repozytoriumZwierze;
+//
+//    @Autowired
+//    public KontrolerZwierze(RepozytoriumZwierze repozytoriumZwierze) {
+//        this.repozytoriumZwierze = repozytoriumZwierze;
+//    }
 
     @GetMapping("/Zwierze")
     public String showZwierzeList(Model model) {
@@ -40,8 +50,19 @@ public class KontrolerZwierze {
     public String newZwierze(Model model) {
         Zwierze zwierze = new Zwierze();
         model.addAttribute("zwierze", zwierze);
+
+        // Pobierz listę wszystkich gatunków i przekaż do widoku
+        List<Gatunek> gatunekList = repozytoriumGatunek.findAll();
+        model.addAttribute("gatunekList", gatunekList);
+
         return "newZwierze";
     }
+//    @GetMapping("/newZwierze")
+//    public String newZwierze(Model model) {
+//        Zwierze zwierze = new Zwierze();
+//        model.addAttribute("zwierze", zwierze);
+//        return "newZwierze";
+//    }
 
     @PostMapping("/saveZwierze")
     public String saveZwierze(@ModelAttribute Zwierze zwierze) {
@@ -54,6 +75,11 @@ public class KontrolerZwierze {
         Zwierze zwierze = repozytoriumZwierze.findById(id_zwierzaka)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid zwierze id: " + id_zwierzaka));
         model.addAttribute("zwierze", zwierze);
+
+        // Pobierz listę wszystkich gatunków i przekaż do widoku
+        List<Gatunek> gatunekList = repozytoriumGatunek.findAll();
+        model.addAttribute("gatunekList", gatunekList);
+
         return "editZwierze";
     }
 
@@ -63,7 +89,8 @@ public class KontrolerZwierze {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid zwierze id: " + id_zwierzaka));
 
         existingZwierze.setImie(zwierze.getImie());
-        existingZwierze.setId_gatunku(zwierze.getId_gatunku());
+        existingZwierze.setGatunek(zwierze.getGatunek());
+//        existingZwierze.setId_gatunku(zwierze.getId_gatunku());
         existingZwierze.setId_pracownika(zwierze.getId_pracownika());
         existingZwierze.setWiekM(zwierze.getWiekM());
         existingZwierze.setPlec(zwierze.getPlec());

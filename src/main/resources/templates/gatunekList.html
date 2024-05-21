@@ -4,33 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dodaj nowego pracownika</title>
+    <title>Lista Gatunków</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <div class="container mt-4">
-    <h2>Dodaj nowego pracownika</h2>
-    <<form th:object="${pracownik}" th:action="@{/savePracownik}" method="post">
-        <div class="form-group">
-            <label for="imie">Imię:</label>
-            <input type="text" class="form-control" id="imie" name="imie" required>
-        </div>
-        <div class="form-group">
-            <label for="nazwisko">Nazwisko:</label>
-            <input type="text" class="form-control" id="nazwisko" name="nazwisko" required>
-        </div>
-        <div class="form-group">
-            <label for="id_stanowiska">ID stanowiska:</label>
-            <input type="number" class="form-control" id="id_stanowiska" name="id_stanowiska" required>
-        </div>
-        <div class="form-group">
-            <label for="data_zatrudnienia">Data zatrudnienia:</label>
-            <input type="date" class="form-control" id="data_zatrudnienia" name="data_zatrudnienia" th:field="*{data_zatrudnienia}" required>
-        </div>
+    <h2>Lista Gatunków</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id Gatunku</th>
+            <th>Nazwa</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="gatunek : ${gatunekList}">
+            <td th:text="${gatunek.id_gatunku}"></td>
+            <td th:text="${gatunek.nazwa}"></td>
+            <td>
+                <a th:href="@{'/editGatunek/' + ${gatunek.id_gatunku}}" class="btn btn-primary btn-sm">Edit</a>
+                <a th:href="@{'/deleteGatunek/' + ${gatunek.id_gatunku}}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-        <button type="submit" class="btn btn-primary">Zapisz</button>
-    </form>
+    <a th:href="@{/newGatunek}" class="btn btn-success">Dodaj Nowy Gatunek</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

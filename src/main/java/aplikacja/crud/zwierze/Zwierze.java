@@ -1,4 +1,6 @@
 package aplikacja.crud.zwierze;
+import aplikacja.crud.gatunek.Gatunek;
+
 
 import jakarta.persistence.*;
 import java.io.Serializable;
@@ -11,10 +13,12 @@ public class Zwierze implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id_zwierzaka;
 
-    @Column(name="id_gatunku")
-    private Integer id_gatunku;
+    @ManyToOne
+    @JoinColumn(name="id_gatunku", referencedColumnName="id_gatunku")
+    private Gatunek gatunek;
 
     @Column(name="imie")
     private String imie;
@@ -42,13 +46,21 @@ public class Zwierze implements Serializable {
         this.id_zwierzaka = id_zwierzaka;
     }
 
-    public Integer getId_gatunku() {
-        return id_gatunku;
+    public Gatunek getGatunek() {
+        return gatunek;
     }
 
-    public void setId_gatunku(Integer id_gatunku) {
-        this.id_gatunku = id_gatunku;
+    public void setGatunek(Gatunek gatunek) {
+        this.gatunek = gatunek;
     }
+
+//    public Integer getId_gatunku() {
+//        return id_gatunku;
+//    }
+//
+//    public void setId_gatunku(Integer id_gatunku) {
+//        this.id_gatunku = id_gatunku;
+//    }
 
     public String getImie() {
         return imie;

@@ -4,26 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Employee</title>
+    <title>Edytuj pracownika</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <div class="container mt-4">
-    <h2>Edit Employee</h2>
-    <form action="/pracownik/update/{id}" method="post">
-        <input type="hidden" name="id_pracownika" th:value="${pracownik.id_pracownika}">
+    <h2>Edytuj pracownika</h2>
+    <form th:action="@{/pracownik/update/{id_pracownika} (id_pracownika=${pracownik.id_pracownika})}" th:object="${pracownik}" method="post">
         <div class="form-group">
-            <label for="imie">Imie:</label>
-            <input type="text" class="form-control" id="imie" name="imie" th:value="${pracownik.imie}" required>
+            <label for="imie">Imię:</label>
+            <input type="text" class="form-control" id="imie" name="imie" th:value="*{imie}" required>
         </div>
         <div class="form-group">
             <label for="nazwisko">Nazwisko:</label>
-            <input type="text" class="form-control" id="nazwisko" name="nazwisko" th:value="${pracownik.nazwisko}" required>
+            <input type="text" class="form-control" id="nazwisko" name="nazwisko" th:value="*{nazwisko}" required>
         </div>
         <div class="form-group">
-            <label for="id_stanowiska">Position ID:</label>
-            <input type="number" class="form-control" id="id_stanowiska" name="id_stanowiska" th:value="${pracownik.id_stanowiska}" required>
+            <label for="id_stanowiska">ID Stanowiska:</label>
+            <input type="number" class="form-control" id="id_stanowiska" name="id_stanowiska" th:value="*{id_stanowiska}" required>
+        </div>
+        <div class="form-group">
+            <label for="data_zatrudnienia">Data zatrudnienia:</label>
+            <input type="date" class="form-control" id="data_zatrudnienia" name="data_zatrudnienia" th:value="*{data_zatrudnienia}" required>
         </div>
         <button type="submit" class="btn btn-primary">Save Changes</button>
     </form>
