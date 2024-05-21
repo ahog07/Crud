@@ -1,7 +1,6 @@
 package aplikacja.crud.kontroler;
 
 import aplikacja.crud.pawilon.Pawilon;
-import aplikacja.crud.pracownik.Pracownik;
 import aplikacja.crud.repozytorium.RepozytoriumPawilon;
 
 import org.springframework.beans.factory.annotation.Autowired;

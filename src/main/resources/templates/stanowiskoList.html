@@ -4,45 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Zwierząt</title>
+    <title>Lista Stanowisk</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 </head>
 <body>
 <div class="container mt-4">
-    <h2>Lista Zwierząt</h2>
+    <h2>Lista Stanowisk</h2>
     <table class="table">
         <thead>
         <tr>
-            <th>Id Zwierzaka</th>
-            <th>Id Gatunku</th>
-            <th>Imię</th>
-            <th>Id Pracownika</th>
-            <th>Wiek (miesiące)</th>
-            <th>Płeć</th>
-            <th>Id Pawilonu</th>
+            <th>Id Stanowiska</th>
+            <th>Nazwa</th>
             <th>Akcje</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="zwierze : ${zwierzeList}">
-            <td th:text="${zwierze.id_zwierzaka}"></td>
-            <td th:text="${zwierze.id_gatunku}"></td>
-            <td th:text="${zwierze.imie}"></td>
-            <td th:text="${zwierze.id_pracownika}"></td>
-            <td th:text="${zwierze.wiekM}"></td>
-            <td th:text="${zwierze.plec}"></td>
-            <td th:text="${zwierze.id_pawilonu}"></td>
+        <tr th:each="stanowisko : ${stanowiskoList}">
+            <td th:text="${stanowisko.id_stanowiska}"></td>
+            <td th:text="${stanowisko.nazwa}"></td>
             <td>
-                <a th:href="@{'/editZwierze/' + ${zwierze.id_zwierzaka}}" class="btn btn-primary btn-sm">Edytuj</a>
-                <a th:href="@{'/deleteZwierze/' + ${zwierze.id_zwierzaka}}" class="btn btn-danger btn-sm">Usuń</a>
+                <a th:href="@{'/editStanowisko/' + ${stanowisko.id_stanowiska}}" class="btn btn-primary btn-sm">Edit</a>
+                <a th:href="@{'/deleteStanowisko/' + ${stanowisko.id_stanowiska}}" class="btn btn-danger btn-sm">Delete</a>
             </td>
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/newZwierze}" class="btn btn-success">Dodaj Nowe Zwierze</a>
+
+    <a th:href="@{/newStanowisko}" class="btn btn-success">Dodaj nowe Stanowisko</a>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
