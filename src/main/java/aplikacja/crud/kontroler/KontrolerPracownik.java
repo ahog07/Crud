@@ -32,14 +32,6 @@ public class KontrolerPracownik {
         return "pracownikList";
     }
 
-//    @GetMapping("/pracownik/{id}")
-//    public String showPracownikDetails(@PathVariable Integer id, Model model) {
-//        Pracownik pracownik = repozytoriumPracownik.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid pracownik ID: " + id));
-//        model.addAttribute("pracownik", pracownik);
-//        return "pracownik";
-//    }
-
     @GetMapping("/pracownik/new")
     public String newPracownik(Model model) {
         Pracownik pracownik = new Pracownik();
@@ -59,14 +51,6 @@ public class KontrolerPracownik {
         model.addAttribute("pracownik", pracownik);
         return "editPracownik";
     }
-
-//    @GetMapping("/pracownik/edit/{id_pracownika}")
-//    public String showEditPracownikForm(@PathVariable Integer id_pracownika, Model model) {
-//        Pracownik pracownik = repozytoriumPracownik.findById(id_pracownika)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid pracownik ID: " + id_pracownika));
-//        model.addAttribute("pracownik", pracownik);
-//        return "editPracownik";
-//    }
 
     @PostMapping("/pracownik/update/{id_pracownika}")
     public String updatePracownik(@PathVariable("id_pracownika") Integer id_pracownika, @ModelAttribute Pracownik pracownik, Model model) {

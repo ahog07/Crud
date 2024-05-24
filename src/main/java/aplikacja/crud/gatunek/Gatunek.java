@@ -21,11 +21,9 @@ public class Gatunek implements Serializable {
     public Gatunek (String nazwa){
         this.nazwa = nazwa;
     }
-
     public Integer getId_gatunku() {
         return id_gatunku;
     }
-
     public void setId_gatunku(Integer id_gatunku) {
         this.id_gatunku = id_gatunku;
     }

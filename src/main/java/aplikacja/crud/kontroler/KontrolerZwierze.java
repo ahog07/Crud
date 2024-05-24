@@ -2,8 +2,9 @@ package aplikacja.crud.kontroler;
 
 import aplikacja.crud.zwierze.Zwierze;
 import aplikacja.crud.repozytorium.RepozytoriumZwierze;
-import aplikacja.crud.gatunek.Gatunek;
 import aplikacja.crud.repozytorium.RepozytoriumGatunek;
+import aplikacja.crud.repozytorium.RepozytoriumPawilon;
+import aplikacja.crud.repozytorium.RepozytoriumPracownik;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,19 +20,19 @@ public class KontrolerZwierze {
 
     private final RepozytoriumZwierze repozytoriumZwierze;
     private final RepozytoriumGatunek repozytoriumGatunek;
+    private final RepozytoriumPawilon repozytoriumPawilon;
+    private final RepozytoriumPracownik repozytoriumPracownik;
 
     @Autowired
-    public KontrolerZwierze(RepozytoriumZwierze repozytoriumZwierze, RepozytoriumGatunek repozytoriumGatunek) {
+    public KontrolerZwierze(RepozytoriumZwierze repozytoriumZwierze,
+                            RepozytoriumGatunek repozytoriumGatunek,
+                            RepozytoriumPawilon repozytoriumPawilon,
+                            RepozytoriumPracownik repozytoriumPracownik) {
         this.repozytoriumZwierze = repozytoriumZwierze;
         this.repozytoriumGatunek = repozytoriumGatunek;
+        this.repozytoriumPawilon = repozytoriumPawilon;
+        this.repozytoriumPracownik = repozytoriumPracownik;
     }
-
-//    private final RepozytoriumZwierze repozytoriumZwierze;
-//
-//    @Autowired
-//    public KontrolerZwierze(RepozytoriumZwierze repozytoriumZwierze) {
-//        this.repozytoriumZwierze = repozytoriumZwierze;
-//    }
 
     @GetMapping("/Zwierze")
     public String showZwierzeList(Model model) {
@@ -50,19 +51,11 @@ public class KontrolerZwierze {
     public String newZwierze(Model model) {
         Zwierze zwierze = new Zwierze();
         model.addAttribute("zwierze", zwierze);
-
-        // Pobierz listę wszystkich gatunków i przekaż do widoku
-        List<Gatunek> gatunekList = repozytoriumGatunek.findAll();
-        model.addAttribute("gatunekList", gatunekList);
-
+        model.addAttribute("listaGatunkow", repozytoriumGatunek.findAll());
+        model.addAttribute("listaPawilon", repozytoriumPawilon.findAll());
+        model.addAttribute("listaPracownik", repozytoriumPracownik.findAll());
         return "newZwierze";
     }
-//    @GetMapping("/newZwierze")
-//    public String newZwierze(Model model) {
-//        Zwierze zwierze = new Zwierze();
-//        model.addAttribute("zwierze", zwierze);
-//        return "newZwierze";
-//    }
 
     @PostMapping("/saveZwierze")
     public String saveZwierze(@ModelAttribute Zwierze zwierze) {
@@ -75,11 +68,9 @@ public class KontrolerZwierze {
         Zwierze zwierze = repozytoriumZwierze.findById(id_zwierzaka)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid zwierze id: " + id_zwierzaka));
         model.addAttribute("zwierze", zwierze);
-
-        // Pobierz listę wszystkich gatunków i przekaż do widoku
-        List<Gatunek> gatunekList = repozytoriumGatunek.findAll();
-        model.addAttribute("gatunekList", gatunekList);
-
+        model.addAttribute("listaGatunkow", repozytoriumGatunek.findAll());
+        model.addAttribute("listaPracownik", repozytoriumPracownik.findAll());
+        model.addAttribute("listaPawilon", repozytoriumPawilon.findAll());
         return "editZwierze";
     }
 
@@ -90,12 +81,10 @@ public class KontrolerZwierze {
 
         existingZwierze.setImie(zwierze.getImie());
         existingZwierze.setGatunek(zwierze.getGatunek());
-//        existingZwierze.setId_gatunku(zwierze.getId_gatunku());
-        existingZwierze.setId_pracownika(zwierze.getId_pracownika());
+        existingZwierze.setPracownik(zwierze.getPracownik());
         existingZwierze.setWiekM(zwierze.getWiekM());
         existingZwierze.setPlec(zwierze.getPlec());
-        existingZwierze.setId_pawilonu(zwierze.getId_pawilonu());
-
+        existingZwierze.setPawilon(zwierze.getPawilon());
         repozytoriumZwierze.save(existingZwierze);
         return "redirect:/Zwierze";
     }

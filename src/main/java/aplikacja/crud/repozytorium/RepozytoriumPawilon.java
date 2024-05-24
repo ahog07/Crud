@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepozytoriumPawilon extends JpaRepository<Pawilon, Integer> {
+    boolean existsByNazwa(String nazwa);
 }
