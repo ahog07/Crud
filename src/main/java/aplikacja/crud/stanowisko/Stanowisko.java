@@ -2,6 +2,7 @@ package aplikacja.crud.stanowisko;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import aplikacja.crud.pracownik.Pracownik;
 
 @Entity
 @Table(name="stanowisko")
@@ -13,6 +14,7 @@ public class Stanowisko implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_stanowiska;
 
+
     @Column(name="nazwa")
     private String nazwa;
 
@@ -21,14 +23,8 @@ public class Stanowisko implements Serializable {
     public Stanowisko(String nazwa){
         this.nazwa = nazwa;
     }
-
-    public Integer getId_stanowiska() {
-        return id_stanowiska;
-    }
-
-    public void setId_stanowiska(Integer id_pawilonu) {
-        this.id_stanowiska = id_pawilonu;
-    }
+    public Integer getId_stanowiska() {return id_stanowiska;}
+    public void setId_stanowiska(Integer id_stanowiska) {this.id_stanowiska = id_stanowiska;}
 
     public String getNazwa() {
         return nazwa;

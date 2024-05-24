@@ -1,5 +1,6 @@
 package aplikacja.crud.pracownik;
 
+import aplikacja.crud.stanowisko.Stanowisko;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,18 +18,15 @@ public class Pracownik implements Serializable {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
 
+    @ManyToOne
+    @JoinColumn(name="id_stanowiska", referencedColumnName="id_stanowiska")
+    private Stanowisko stanowisko;
 
     @Column(name="imie")
     private String imie;
 
     @Column(name="nazwisko")
     private String nazwisko;
-
-    @Column(name="id_stanowiska")
-    private Integer id_stanowiska;
-
-//    @Column(name="data_zatrudnienia")
-//    private String data_zatrudnienia;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="data_zatrudnienia")
@@ -42,44 +40,30 @@ public class Pracownik implements Serializable {
     public Integer getId_pracownika() {
         return id_pracownika;
     }
-
     public void setId_pracownika(Integer id_pracownika) {
         this.id_pracownika = id_pracownika;
     }
-
     public String getImie() {
         return imie;
     }
-
     public void setImie(String imie) {
         this.imie = imie;
     }
-
     public String getNazwisko() {
         return nazwisko;
     }
-
     public void setNazwisko(String nazwisko) {
         this.nazwisko = nazwisko;
     }
 
-    public Integer getId_stanowiska() {return id_stanowiska;}
+    public Stanowisko getStanowisko() {return stanowisko;}
 
-    public void setId_stanowiska(Integer id_stanowiska) {
-        this.id_stanowiska = id_stanowiska;
+    public void setStanowisko(Stanowisko stanowisko) {
+        this.stanowisko = stanowisko;
     }
-
-
-//    public String getData_zatrudnienia() {return data_zatrudnienia;}
-//
-//    public void setData_zatrudnienia(String data_zatrudnienia) {
-//        this.data_zatrudnienia = data_zatrudnienia;
-//    }
-
     public Date getData_zatrudnienia() {
         return data_zatrudnienia;
     }
-
     public void setData_zatrudnienia(Date data_zatrudnienia) {
         this.data_zatrudnienia = data_zatrudnienia;
     }

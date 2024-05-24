@@ -22,18 +22,15 @@
             <input type="text" class="form-control" id="nazwisko" name="nazwisko" required>
         </div>
         <div class="form-group">
-            <label for="id_stanowiska">ID stanowiska:</label>
-            <input type="number" class="form-control" id="id_stanowiska" name="id_stanowiska" required>
+            <label for="stanowisko">Stanowisko:</label>
+            <select class="form-control" id="stanowisko" th:field="*{stanowisko.id_stanowiska}" required>
+                <option th:each="stanowisko : ${listaStanowisko}" th:value="${stanowisko.id_stanowiska}" th:text="${stanowisko.nazwa}"></option>
+            </select>
         </div>
         <div class="form-group">
             <label for="data_zatrudnienia">Data zatrudnienia:</label>
             <input type="date" class="form-control" id="data_zatrudnienia" name="data_zatrudnienia" th:field="*{data_zatrudnienia}" required>
         </div>
-<!--        <div class="form-group">-->
-<!--            <label for="data_zatrudnienia">Data zatrudnienia:</label>-->
-<!--            <input type="text" class="form-control" id="data_zatrudnienia" name="data_zatrudnienia" th:field="*{data_zatrudnienia}" required>-->
-<!--        </div>-->
-
         <button type="submit" class="btn btn-primary">Zapisz</button>
     </form>
 </div>

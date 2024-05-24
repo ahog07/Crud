@@ -23,8 +23,14 @@
             <input type="text" class="form-control" id="nazwisko" name="nazwisko" th:value="*{nazwisko}" required>
         </div>
         <div class="form-group">
-            <label for="id_stanowiska">ID Stanowiska:</label>
-            <input type="number" class="form-control" id="id_stanowiska" name="id_stanowiska" th:value="*{id_stanowiska}" required>
+            <label for="stanowisko">Stanowisko:</label>
+            <select class="form-control" id="stanowisko" th:field="*{stanowisko.id_stanowiska}" required>
+                <option value="" disabled selected>Wybierz stanowisko</option>
+                <option th:each="stanowisko : ${listaStanowisko}"
+                        th:value="${stanowisko.id_stanowiska}"
+                        th:text="${stanowisko.id_stanowiska + ' - ' + stanowisko.nazwa}">
+                </option>
+            </select>
         </div>
         <div class="form-group">
             <label for="data_zatrudnienia">Data zatrudnienia:</label>

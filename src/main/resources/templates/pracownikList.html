@@ -27,7 +27,9 @@
             <td th:text="${pracownik.id_pracownika}"></td>
             <td th:text="${pracownik.imie}"></td>
             <td th:text="${pracownik.nazwisko}"></td>
-            <td th:text="${pracownik.id_stanowiska}"></td>
+            <td>
+                <a th:href="@{/Stanowisko}" th:text="${pracownik.stanowisko.id_stanowiska}"></a>
+            </td>
             <td th:text="${pracownik.data_zatrudnienia}"></td>
             <td>
                 <a th:href="@{'/pracownik/edit/' + ${pracownik.id_pracownika}}" class="btn btn-primary btn-sm">Edit</a>
