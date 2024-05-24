@@ -12,6 +12,7 @@
 <div class="container mt-4">
     <h2>Dodaj nowego pracownika</h2>
     <<form th:object="${pracownik}" th:action="@{/savePracownik}" method="post">
+    <input type="hidden" th:field="*{id_pracownika}"/>
         <div class="form-group">
             <label for="imie">Imię:</label>
             <input type="text" class="form-control" id="imie" name="imie" required>
@@ -28,6 +29,10 @@
             <label for="data_zatrudnienia">Data zatrudnienia:</label>
             <input type="date" class="form-control" id="data_zatrudnienia" name="data_zatrudnienia" th:field="*{data_zatrudnienia}" required>
         </div>
+<!--        <div class="form-group">-->
+<!--            <label for="data_zatrudnienia">Data zatrudnienia:</label>-->
+<!--            <input type="text" class="form-control" id="data_zatrudnienia" name="data_zatrudnienia" th:field="*{data_zatrudnienia}" required>-->
+<!--        </div>-->
 
         <button type="submit" class="btn btn-primary">Zapisz</button>
     </form>

@@ -62,10 +62,7 @@ public class KontrolerPawilon {
     public String updatePawilon(@PathVariable("id_pawilonu") Integer id_pawilonu, @ModelAttribute Pawilon pawilon, Model model) {
         Pawilon existingPawilon = repozytoriumPawilon.findById(id_pawilonu)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid pawilon id: " + id_pawilonu));
-
         existingPawilon.setNazwa(pawilon.getNazwa());
-
-
         repozytoriumPawilon.save(existingPawilon);
         return "redirect:/Pawilon";
     }

@@ -13,7 +13,7 @@
 <div class="container mt-4">
     <h2>Dodaj Nowy Gatunek</h2>
 
-    <form th:object="${gatunek}" th:action="@{/saveGatunek}" method="post">
+    <form th:action="@{/saveGatunek}" th:object="${gatunek}"  method="post">
         <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
             <p th:text="${errorMessage}"></p>
         </div>

@@ -1,6 +1,7 @@
 package aplikacja.crud.kontroler;
 
 import aplikacja.crud.gatunek.Gatunek;
+import aplikacja.crud.pawilon.Pawilon;
 import aplikacja.crud.repozytorium.RepozytoriumGatunek;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +48,9 @@ public class KontrolerGatunek {
     public String saveGatunek(@ModelAttribute Gatunek gatunek, Model model) {
         if (repozytoriumGatunek.existsByNazwa(gatunek.getNazwa())) {
             model.addAttribute("errorMessage", "Nazwa gatunku już istnieje, wybierz inną.");
-            return "newGatunek";
         }
         repozytoriumGatunek.saveAndFlush(gatunek);
-        return "redirect:/gatunek";
+        return "redirect:/Gatunek";
     }
 
     @GetMapping("/editGatunek/{id_gatunku}")
@@ -61,15 +61,11 @@ public class KontrolerGatunek {
         return "editGatunek";
     }
 
-
     @PostMapping("/updateGatunek/{id_gatunku}")
     public String updateGatunek(@PathVariable("id_gatunku") Integer id_gatunku, @ModelAttribute Gatunek gatunek, Model model) {
         Gatunek existingGatunek = repozytoriumGatunek.findById(id_gatunku)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid gatunek id: " + id_gatunku));
-
         existingGatunek.setNazwa(gatunek.getNazwa());
-
-
         repozytoriumGatunek.save(existingGatunek);
         return "redirect:/Gatunek";
     }

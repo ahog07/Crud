@@ -54,12 +54,19 @@ public class KontrolerPracownik {
     }
 
     @GetMapping("/pracownik/edit/{id_pracownika}")
-    public String showEditPracownikForm(@PathVariable Integer id_pracownika, Model model) {
-        Pracownik pracownik = repozytoriumPracownik.findById(id_pracownika)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid pracownik ID: " + id_pracownika));
+    public String editPracownik(@PathVariable("id_pracownika") Integer id_pracownika, Model model) {
+        Pracownik pracownik = repozytoriumPracownik.findById(id_pracownika).orElseThrow(() -> new IllegalArgumentException("Invalid pracownik Id:" + id_pracownika));
         model.addAttribute("pracownik", pracownik);
         return "editPracownik";
     }
+
+//    @GetMapping("/pracownik/edit/{id_pracownika}")
+//    public String showEditPracownikForm(@PathVariable Integer id_pracownika, Model model) {
+//        Pracownik pracownik = repozytoriumPracownik.findById(id_pracownika)
+//                .orElseThrow(() -> new IllegalArgumentException("Invalid pracownik ID: " + id_pracownika));
+//        model.addAttribute("pracownik", pracownik);
+//        return "editPracownik";
+//    }
 
     @PostMapping("/pracownik/update/{id_pracownika}")
     public String updatePracownik(@PathVariable("id_pracownika") Integer id_pracownika, @ModelAttribute Pracownik pracownik, Model model) {
@@ -67,26 +74,6 @@ public class KontrolerPracownik {
         repozytoriumPracownik.save(pracownik);
         return "redirect:/pracownik";
     }
-
-//    @GetMapping("/editPracownik/{id_pracownika}")
-//    public String showEditPracownikForm(@PathVariable("id_pracownika") Integer id_pracownika, Model model) {
-//        Pracownik pracownik = repozytoriumPracownik.findById(id_pracownika)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid pracownik id: " + id_pracownika));
-//        model.addAttribute("pracownik", pracownik);
-//        return "editPracownik";
-//    }
-//
-//    @PostMapping("/updatePracownik/{id_pracownika}")
-//    public String updatePracownik(@PathVariable("id_pracownika") Integer id_pracownika, @ModelAttribute Pracownik pracownik, Model model) {
-//        Pracownik existingPracownik = repozytoriumPracownik.findById(id_pracownika)
-//                .orElseThrow(() -> new IllegalArgumentException("Invalid pracownik id: " + id_pracownika));
-//
-//        existingPracownik.setImie(pracownik.getImie());
-//
-//
-//        repozytoriumPracownik.save(existingPracownik);
-//        return "redirect:/Stanowisko";
-//    }
 
     @GetMapping("/deletePracownik/{id}")
     public String deletePracownik(@PathVariable Integer id) {

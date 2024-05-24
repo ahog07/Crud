@@ -27,7 +27,12 @@ public class Pracownik implements Serializable {
     @Column(name="id_stanowiska")
     private Integer id_stanowiska;
 
+//    @Column(name="data_zatrudnienia")
+//    private String data_zatrudnienia;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="data_zatrudnienia")
+    @Temporal(TemporalType.DATE)
     private Date data_zatrudnienia;
 
 
@@ -65,7 +70,15 @@ public class Pracownik implements Serializable {
     }
 
 
-    public Date getData_zatrudnienia() {return data_zatrudnienia;}
+//    public String getData_zatrudnienia() {return data_zatrudnienia;}
+//
+//    public void setData_zatrudnienia(String data_zatrudnienia) {
+//        this.data_zatrudnienia = data_zatrudnienia;
+//    }
+
+    public Date getData_zatrudnienia() {
+        return data_zatrudnienia;
+    }
 
     public void setData_zatrudnienia(Date data_zatrudnienia) {
         this.data_zatrudnienia = data_zatrudnienia;

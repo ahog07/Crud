@@ -13,13 +13,13 @@
 <div class="container mt-4">
     <h2>Edytuj Gatunek</h2>
 
-    <form th:object="${gatunek}" th:action="@{/updateGatunek}" method="post">
+    <form th:object="${gatunek}" th:action="@{'/updateGatunek/' + ${gatunek.id_gatunku}}" method="post">
         <input type="hidden" th:field="*{id_gatunku}" />
-        <br/>
 
+        <div class="form-group">
         <label for="nazwa">Nazwa:</label>
         <input type="text" id="nazwa" name="nazwa" th:field="*{nazwa}" required />
-        <br/>
+        </div>
 
         <button type="submit" class="btn btn-primary">Zapisz Gatunek</button>
     </form>
