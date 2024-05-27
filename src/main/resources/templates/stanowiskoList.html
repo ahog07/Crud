@@ -24,14 +24,15 @@
             <td th:text="${stanowisko.id_stanowiska}"></td>
             <td th:text="${stanowisko.nazwa}"></td>
             <td>
-                <a th:href="@{'/editStanowisko/' + ${stanowisko.id_stanowiska}}" class="btn btn-primary btn-sm">Edit</a>
-                <a th:href="@{'/deleteStanowisko/' + ${stanowisko.id_stanowiska}}" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{'/editStanowisko/' + ${stanowisko.id_stanowiska}}" class="btn btn-primary btn-sm">Edycja</a>
+                <a th:href="@{'/deleteStanowisko/' + ${stanowisko.id_stanowiska}}" class="btn btn-danger btn-sm">Usuń</a>
             </td>
         </tr>
         </tbody>
     </table>
 
     <a th:href="@{/newStanowisko}" class="btn btn-success">Dodaj nowe Stanowisko</a>
+    <a th:href="@{/}" class="btn btn-success">Panel główny</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

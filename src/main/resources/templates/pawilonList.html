@@ -24,9 +24,9 @@
             <td th:text="${pawilon.id_pawilonu}"></td>
             <td th:text="${pawilon.nazwa}"></td>
             <td>
-                <a th:href="@{'/editPawilon/' + ${pawilon.id_pawilonu}}" class="btn btn-primary btn-sm">Edit</a>
+                <a th:href="@{'/editPawilon/' + ${pawilon.id_pawilonu}}" class="btn btn-primary btn-sm">Edycja</a>
 
-                <a th:href="@{'/deletePawilon/' + ${pawilon.id_pawilonu}}" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{'/deletePawilon/' + ${pawilon.id_pawilonu}}" class="btn btn-danger btn-sm">Usuń</a>
             </td>
 
         </tr>
@@ -35,6 +35,7 @@
 
 
     <a th:href="@{/newPawilon}" class="btn btn-success">Dodaj nowy Pawilon</a>
+    <a th:href="@{/}" class="btn btn-success">Panel główny</a>
 
 </div>
 

@@ -24,14 +24,15 @@
             <td th:text="${gatunek.id_gatunku}"></td>
             <td th:text="${gatunek.nazwa}"></td>
             <td>
-                <a th:href="@{'/editGatunek/' + ${gatunek.id_gatunku}}" class="btn btn-primary btn-sm">Edit</a>
-                <a th:href="@{'/deleteGatunek/' + ${gatunek.id_gatunku}}" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{'/editGatunek/' + ${gatunek.id_gatunku}}" class="btn btn-primary btn-sm">Edycja</a>
+                <a th:href="@{'/deleteGatunek/' + ${gatunek.id_gatunku}}" class="btn btn-danger btn-sm">Usuń</a>
             </td>
         </tr>
         </tbody>
     </table>
 
     <a th:href="@{/newGatunek}" class="btn btn-success">Dodaj Nowy Gatunek</a>
+    <a th:href="@{/}" class="btn btn-success">Panel główny</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

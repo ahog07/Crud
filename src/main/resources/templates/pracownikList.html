@@ -32,14 +32,15 @@
             </td>
             <td th:text="${pracownik.data_zatrudnienia}"></td>
             <td>
-                <a th:href="@{'/pracownik/edit/' + ${pracownik.id_pracownika}}" class="btn btn-primary btn-sm">Edit</a>
-                <a th:href="@{'/deletePracownik/' + ${pracownik.id_pracownika}}" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{'/pracownik/edit/' + ${pracownik.id_pracownika}}" class="btn btn-primary btn-sm">Edycja</a>
+                <a th:href="@{'/deletePracownik/' + ${pracownik.id_pracownika}}" class="btn btn-danger btn-sm">Usuń</a>
             </td>
         </tr>
         </tbody>
     </table>
 
     <a th:href="@{/pracownik/new}" class="btn btn-success">Dodaj nowego pracownika</a>
+    <a th:href="@{/}" class="btn btn-success">Panel główny</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -41,13 +41,14 @@
                 <a th:href="@{/Pawilon}" th:text="${zwierze.pawilon.id_pawilonu}"></a>
             </td>
             <td>
-                <a th:href="@{'/editZwierze/' + ${zwierze.id_zwierzaka}}" class="btn btn-primary btn-sm">Edytuj</a>
+                <a th:href="@{'/editZwierze/' + ${zwierze.id_zwierzaka}}" class="btn btn-primary btn-sm">Edycja</a>
                 <a th:href="@{'/deleteZwierze/' + ${zwierze.id_zwierzaka}}" class="btn btn-danger btn-sm">Usuń</a>
             </td>
         </tr>
         </tbody>
     </table>
     <a th:href="@{/newZwierze}" class="btn btn-success">Dodaj Nowe Zwierze</a>
+    <a th:href="@{/}" class="btn btn-success">Panel główny</a>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
