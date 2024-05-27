@@ -14,8 +14,8 @@
   <h2>Dodaj Nowe Stanowisko</h2>
 
   <form th:object="${stanowisko}" th:action="@{/saveStanowisko}" method="post">
-    <label for="nazwa">id stanowiska:</label>
-    <input type="number" th:field="*{id_stanowiska}" />
+
+    <input type="hidden" th:field="*{id_stanowiska}" />
     <br/>
 
     <label for="nazwa">Nazwa:</label>
@@ -23,11 +23,12 @@
     <br/>
 
     <button type="submit" class="btn btn-primary">Zapisz Stanowisko</button>
+    <a th:href="@{/Stanowisko}" class="btn btn-secondary">Anuluj</a>
   </form>
   <br/>
   <br/>
 
-  <a href="/Stanowisko">Powrót do Listy Stanowisk</a>
+<!--  <a href="/Stanowisko">Powrót do Listy Stanowisk</a>-->
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

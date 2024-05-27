@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Pawilon</title>
+    <title>Nowy Pawilon</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -12,7 +12,7 @@
 <body>
 
 <div class="container mt-4">
-    <h2>Create New Pawilon</h2>
+    <h2>Nowy Pawilon</h2>
 
 
     <form th:object="${pawilon}" th:action="@{/savePawilon}" method="post">
@@ -24,12 +24,12 @@
         <input type="text" id="nazwa" name="nazwa" th:field="*{nazwa}" required />
         <br/>
 
-        <button type="submit" class="btn btn-primary">Save Pawilon</button>
+        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <a th:href="@{/Pawilon}" class="btn btn-secondary">Anuluj</a>
     </form>
     <br/>
     <br/>
 
-    <a href="/Pawilon">Powrót do listy pawilonów</a>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

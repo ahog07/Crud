@@ -32,7 +32,7 @@ public class Zwierze implements Serializable {
     @Column(name="imie")
     private String imie;
 
-    @Column(name="wiekM")
+    @Column(name="wiekm")
     private BigDecimal wiekM;
 
     @Column(name="plec")
@@ -52,9 +52,11 @@ public class Zwierze implements Serializable {
     public void setGatunek(Gatunek gatunek) {
         this.gatunek = gatunek;
     }
+
     public String getImie() {
         return imie;
     }
+
     public void setImie(String imie) {
         this.imie = imie;
     }

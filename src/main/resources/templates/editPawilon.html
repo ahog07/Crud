@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Pawilon</title>
+    <title>Edytuj Pawilon</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <div class="container mt-4">
-    <h2>Edit Pawilon</h2>
+    <h2>Edytuj Pawilon</h2>
     <form th:action="@{'/updatePawilon/' + ${pawilon.id_pawilonu}}" th:object="${pawilon}" method="post">
         <div class="form-group">
             <label for="nazwa">Nazwa:</label>
@@ -18,6 +18,8 @@
         </div>
         <!-- Dodaj inne pola formularza według potrzeby -->
         <button type="submit" class="btn btn-primary">Zapisz</button>
+        <a th:href="@{/Pawilon}" class="btn btn-secondary">Anuluj</a>
+
     </form>
 </div>
 

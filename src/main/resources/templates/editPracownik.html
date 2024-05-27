@@ -37,7 +37,8 @@
             <input type="date" class="form-control" id="data_zatrudnienia" name="data_zatrudnienia" th:value="*{data_zatrudnienia}" required>
         </div>
         <button type="submit" class="btn btn-primary">Zapisz</button>
-        <a href="/Stanowisko">Anuluj</a>
+        <a th:href="@{/pracownik}" class="btn btn-secondary">Anuluj</a>
+
     </form>
 </div>
 
